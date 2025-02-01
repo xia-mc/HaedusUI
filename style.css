@@ -807,7 +807,7 @@
     transition: .2s ease;
 }
 
-/* Remove the outer box of the scrollbar */
+
 .navigation .submenu .modules::-webkit-scrollbar {
     width: 8px; /* Adjust the width as needed */
 }
@@ -944,6 +944,34 @@
     justify-content: center;
     display: flex;
     line-height: 30px; /* Ensures the text is vertically centered */
+}
+
+.submenu .sidemodules{
+    width: 350px !important;
+    margin-bottom: 24px;
+}
+.submenu .sidemodules .modules-wrapper{
+    max-height: 450px !important;
+    overflow-y: auto;
+    overflow-x: hidden !important;
+    margin-bottom: 12px;
+}
+
+
+.navigation .submenu .sidemodules .modules-wrapper::-webkit-scrollbar {
+    width: 8px; /* Adjust the width as needed */
+}
+
+/* Customize the scrollbar thumb */
+.navigation .submenu .sidemodules .modules-wrapper::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners for the thumb */
+}
+
+/* Customize the scrollbar track */
+.navigation .submenu .sidemodules .modules-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+    border-radius: 6px; /* Rounded corners for the track */
 }
 
 #store-link,
