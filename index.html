@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hex-Rays - the State-of-the-art binary code analysis tools</title>
+
+    <link rel="shortcut icon" href="https://hex-rays.com/hubfs/Ico-logo.png">
+    <meta name="description"
+          content="Hades, The state of art for injecting and reverse engineering ">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="icons_and_fonts.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!--    do not touch this-->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="navigation.js"></script>
+
+</head>
+<body>
+<nav class="navigation-wrapper">
+    <div class="container">
+        <div class="navigation nav-desktop">
+            <div class="level-0">
+                <div class="logo">
+                    <span id="hs_cos_wrapper_menu_"
+                          class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" style=""
+                          data-hs-cos-general-type="widget" data-hs-cos-type="logo">
+                        <a href="/" id="hs-link-menu_" style="border-width:0px;border:0px;">
+                            <img src="https://hex-rays.com/hubfs/logo-website.svg"
+                                 class="hs-image-widget "
+                                 height="48"
+                                 style="height: auto;width:144px;border-width:0px;border:0px;"
+                                 width="144"
+                                 alt="logo-website"
+                                 title="logo-website"
+                                 loading="">
+                        </a>
+                    </span>
+                </div>
+                <div class="top-level-menu-wrapper">
+                    <ul class="top-level-menu">
+
+                        <li data-submenu="submenu-1" class="top-level-menu-link has-submenu">
+                            <div href="/" class="text-primary">
+                                Modules
+                                <i class="icon-chevron-down"></i>
+                            </div>
+                        </li>
+
+                        <li data-submenu="submenu-2" class="top-level-menu-link has-submenu">
+                            <div href="/" class="text-primary">
+                                Settings
+                                <i class="icon-chevron-down"></i>
+                            </div>
+                        </li>
+
+                        <li data-submenu="submenu-4" class="top-level-menu-link has-submenu">
+                            <div href="/" class="text-primary">
+                                Configs
+                                <i class="icon-chevron-down"></i>
+                            </div>
+                        </li>
+
+                        <li class="top-level-menu-link ">
+                            <a href="/" class="text-primary">
+                                Classroom
+                            </a>
+                        </li>
+
+                        <li class="top-level-menu-link ">
+                            <a href="/" class="text-primary">
+                                Pricing
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class="menu-indicator"></div>
+                </div>
+                <div class="actions">
+                    <span class="site-global-search icon-search" id="site-search"></span>
+
+                    <a href="/" class="icon-shopping-bag" id="store-link" target="_blank" rel="noopener">
+                    </a>
+
+                    <a href="/" class="primary-button" target="_blank" rel="noopener">
+                        My Account
+                    </a>
+                </div>
+            </div>
+            <div class="submenus-wrapper">
+                <div class="submenus">
+                    <div id="submenu-1" class="submenu columns-4">
+                        <div class="column categories border-right">
+                            Categories
+
+                            <div class="module">
+                                <a href="/">
+                                    Combat
+                                    <p class="description">State-of-the-art, cutting edge bypasses for blatent modules,
+                                        designed for the pure joy of brutal cheating</p>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    Ghost
+                                    <p class="description">Go undercover. Designed for closet cheaters, most features
+                                        utilize math and is unbannable</p>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    Movement
+                                    <p class="description">All of the Movement features ever needed, once and for
+                                        all</p>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    Misc
+                                    <p class="description">Quality of life features to ensure a better experience in the
+                                        server </p>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    Misc
+                                    <p class="description">Powerful IDA for education providers and universities</p>
+                                </a>
+                            </div>
+
+                            <!--                            hightlighted part-->
+                            <div class="categories highlighted">
+                                <p class="col-title Title-text">Help</p>
+
+                                <div class="module">
+                                    <a href="/">
+                                        FAQs
+                                        <p class="description">Commonly asked questions and their answers.</p>
+                                        <i class="icon-arrow-narrow-right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="module">
+                                    <a href="/" target="_blank" rel="noopener">
+                                        Documentation
+                                        <p class="description">Comprehensive user guides and technical
+                                            documentation.</p>
+                                        <i class="icon-arrow-narrow-right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="module">
+                                    <a href="/">
+                                        Our reseller partners
+                                        <p class="description">Information about our official reseller partners.</p>
+                                        <i class="icon-arrow-narrow-right"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="column pinned-modules">
+                            <p class="col-title Title-text">Pinned</p>
+                            <div class="module">
+                                <a href="/">
+                                    AimAssist
+                                    <p class="description">Helps with Aiming the enemy, can be safe or blatant</p>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    Overlay
+                                    <p class="description">Gives a good sight of what the enemy</p>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    AutoBlock
+                                    <p class="description">Reverse engineer the opponents attack pattern and block two
+                                        steps ahead.</p>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="column modules">
+                            <p class="col-title Title-text">Modules</p>
+
+                            <div class="modules module-container">
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+
+
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                                <div class="module">
+                                    <a href="/">
+                                        KillAura
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="submenu-2" class="submenu columns-3">
+                        <div class="column settings-column">
+                            <div class="setting-group">
+
+                                <div class="setting-group-title">
+                                    <p class="col-title Title-text"> Combat Settings</p>
+                                    <i class="icon-chevron-down"></i>
+                                </div>
+                                <div class="setting-wrapper">
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="setting-group">
+
+                                <div class="setting-group-title">
+                                    <p class="col-title Title-text"> Combat Settings</p>
+                                    <i class="icon-chevron-down"></i>
+                                </div>
+                                <div class="setting-wrapper">
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="setting-group">
+
+                                <div class="setting-group-title">
+                                    <p class="col-title Title-text"> Combat Settings</p>
+                                    <i class="icon-chevron-down"></i>
+                                </div>
+                                <div class="setting-wrapper">
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="setting-group">
+
+                                <div class="setting-group-title">
+                                    <p class="col-title Title-text"> Combat Settings</p>
+                                    <i class="icon-chevron-down"></i>
+                                </div>
+                                <div class="setting-wrapper">
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="setting-group">
+
+                                <div class="setting-group-title">
+                                    <p class="col-title Title-text"> Combat Settings</p>
+                                    <i class="icon-chevron-down"></i>
+                                </div>
+                                <div class="setting-wrapper">
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                    <div class="setting">
+                                        <div class="setting-info">
+                                            <p class="setting-title">Aimbot</p>
+                                            <p class="setting-description">Aimbot is a feature that helps you aim at the
+                                                enemy</p>
+                                        </div>
+                                        <div class="setting-value">
+                                            X
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="submenu-4" class="submenu columns-4">
+                        <div class="column column-1 ">
+                            <p class="col-title Title-text">Learn</p>
+
+                            <div class="module">
+                                <a href="/" target="_blank" rel="noopener">
+                                    Documentation
+                                    <p class="description">Comprehensive user guides and technical documentation.</p>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    Blog
+                                    <p class="description">Insights, updates, and articles from the Hex-Rays team.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="column column-2 ">
+                            <p class="col-title Title-text">Connect</p>
+
+                            <div class="module">
+                                <a href="/" target="_blank" rel="noopener">
+                                    Forum
+                                    <p class="description">Participate in our forum for questions and community
+                                        support.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="column modules ">
+                            <p class="col-title Title-text">Supercharge</p>
+
+                            <div class="module">
+                                <a href="/" target="_blank" rel="nofollow noopener">
+                                    Community plugins
+                                    <p class="description">Enhance IDA with a variety of plugins.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="column column-4 highlight">
+                            <p class="col-title Title-text">Help</p>
+
+                            <div class="module">
+                                <a href="/">
+                                    FAQs
+                                    <p class="description">Commonly asked questions and their answers.</p>
+                                    <i class="icon-arrow-narrow-right"></i>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/" target="_blank" rel="noopener">
+                                    Download center
+                                    <p class="description">Access and download the latest versions of SDKs &amp;
+                                        utilities.</p>
+                                    <i class="icon-arrow-narrow-right"></i>
+                                </a>
+                            </div>
+
+                            <div class="module">
+                                <a href="/">
+                                    Our reseller partners
+                                    <p class="description">Information about our official reseller partners.</p>
+                                    <i class="icon-arrow-narrow-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation nav-mobile">
+            <div class="level-0">
+                <div class="logo">
+                    <span id="hs_cos_wrapper_menu_"
+                          class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" style=""
+                          data-hs-cos-general-type="widget" data-hs-cos-type="logo">
+                        <a href="/" id="hs-link-menu_" style="border-width:0px;border:0px;">
+                            <img src="https://hex-rays.com/hubfs/logo-website.svg"
+                                 class="hs-image-widget "
+                                 height="48"
+                                 style="height: auto;width:144px;border-width:0px;border:0px;"
+                                 width="144"
+                                 alt="logo-website"
+                                 title="logo-website"
+                                 loading="">
+                        </a>
+                    </span>
+                </div>
+
+                <div class="menu-btn-wrapper">
+                    <div class="menu-btn">
+                        <span></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="level-1">
+                <ul>
+
+                    <li data-submenu="submenu-1" class="top-level-menu-link has-submenu">
+                        <div class="text-primary">
+                            Products
+                            <i class="icon-chevron-down"></i>
+                        </div>
+
+                        <div id="mobile-submenu-1" class="mobile-submenu">
+
+                            <div class="column column-1">
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        IDA Pro
+                                        <p class="description">State-of-the-art, binary code analysis tool</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        IDA Home
+                                        <p class="description">Affordable tool for reverse engineering hobbyists</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        IDA Free
+                                        <p class="description">Lightweight IDA at no cost to evaluate basic
+                                            features </p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        IDA Classroom
+                                        <p class="description">Powerful IDA for education providers and universities</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        IDA Pro OEM
+                                        <p class="description">The license you need to sell software or Saas based on
+                                            IDA</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="column column-2">
+                                <p class="col-title text-gray-6">Features</p>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Decompilers
+                                        <p class="description">Easily readable pseudocode to enhance your binary
+                                            analysis</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Private Lumina Add-on
+                                        <p class="description">Fast function recognition within your organization</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Teams Add-on
+                                        <p class="description">Collaborative reverse engineering</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="column column-3">
+                                <p class="col-title text-gray-6">Others</p>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Training courses
+                                        <p class="description">Expert-level courses for mastering complex reverse
+                                            engineering techniques.</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li data-submenu="submenu-2" class="top-level-menu-link has-submenu">
+                        <div class="text-primary">
+                            Case studies
+                            <i class="icon-chevron-down"></i>
+                        </div>
+
+                        <div id="mobile-submenu-2" class="mobile-submenu">
+
+                            <div class="column column-1">
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Malware analysis &amp; Digital forensics
+                                        <p class="description">Digital forensic investigations occur when a system is
+                                            compromised by malicious software.</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Vulnerability research &amp; Penetration testing
+                                        <p class="description">There is a strong incentive for software developers to
+                                            attack their own software for the purpose of hardening security.</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Intellectual property
+                                        <p class="description">Intellectual property is an essential asset of many
+                                            companies.</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="column column-2">
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Dynamic Analysis &amp; Debugging
+                                        <p class="description">Disassembling a computer program can reveal a great deal
+                                            about its behavior, but there are many ways to limit the usefulness of the
+                                            raw disassembly.</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Automotive security
+                                        <p class="description">Modern vehicles are rolling software ecosystems. They are
+                                            now more reliant on firmware running on microcontrollers instead of pure
+                                            hardware like in the past.</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Interoperability
+                                        <p class="description">Information is rarely produced and consumed strictly
+                                            inside an application.</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        See all case studies
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="top-level-menu-link ">
+                        <a href="/" class="text-primary">
+                            Classroom
+                        </a>
+                    </li>
+
+                    <li data-submenu="submenu-4" class="top-level-menu-link has-submenu">
+                        <div class="text-primary">
+                            Resources
+                            <i class="icon-chevron-down"></i>
+                        </div>
+
+                        <div id="mobile-submenu-4" class="mobile-submenu">
+
+                            <div class="column column-1">
+                                <p class="col-title text-gray-6">Learn</p>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/" target="_blank" rel="noopener">
+                                        Documentation
+                                        <p class="description">Comprehensive user guides and technical
+                                            documentation.</p>
+                                    </a>
+                                </div>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/">
+                                        Blog
+                                        <p class="description">Insights, updates, and articles from the Hex-Rays
+                                            team.</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="column column-2">
+                                <p class="col-title text-gray-6">Connect</p>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/" target="_blank" rel="noopener">
+                                        Forum
+                                        <p class="description">Participate in our forum for questions and community
+                                            support.</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="column column-3">
+                                <p class="col-title text-gray-6">Supercharge</p>
+
+                                <div class="nav-link-wrapper">
+                                    <a href="/" target="_blank" rel="nofollow noopener">
+                                        Community plugins
+                                        <p class="description">Enhance IDA with a variety of plugins.</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="top-level-menu-link ">
+                        <a href="/" class="text-primary">
+                            Pricing
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="actions border-gray-4">
+                    <a href="/" class="primary-button" target="_blank" rel="noopener">
+                        My Account
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="overlay"></div>
+</div></div>
+
+<div class="body-container-wrapper">
+
+    <div class="container-fluid">
+        <div class="row-fluid-wrapper">
+            <div class="row-fluid">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
