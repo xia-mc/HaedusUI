@@ -35,5 +35,5 @@
 
 .card {
     /* Use a custom cubic-bezier easing function for a smoother animation */
-    animation: slideIn 0.5s cubic-bezier(0.46, 0.9, 0.2, 1.7) forwards;
+    animation: slideIn 0.5s;
 }

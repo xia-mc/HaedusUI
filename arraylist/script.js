@@ -9,7 +9,7 @@ function createCard(name, parentContainer) {
     card.innerText = name;
 
     // Append the new div to the parent container
-    parentContainer.appendChild(card);
+    parentContainer.prepend(card);
 }
 
 window.onload = createInitialCards;
