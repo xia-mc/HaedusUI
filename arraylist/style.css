@@ -1,0 +1,39 @@
+.arr-container {
+    position: absolute;
+    right: 4px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.card{
+    background: rgb(30, 31, 34, 0.94);
+    padding: 7px;
+    width: fit-content;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px rgb(30, 31, 34, 0.4);
+/*    now the text deocrations */
+    font-weight: bold;
+    font-size: 25px;
+    color: aliceblue;
+    font-family: "Arial Rounded MT Bold", Arial;
+    margin-bottom: 4px;
+}
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.card {
+    /* Use a custom cubic-bezier easing function for a smoother animation */
+    animation: slideIn 0.5s cubic-bezier(0.46, 0.9, 0.2, 1.7) forwards;
+}
