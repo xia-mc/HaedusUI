@@ -247,10 +247,6 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(moduleDiv);
     }
 
-    for(let i = 1; i <= 50; i++) {
-        addToggleModule(`Test Module ${i}`, `This is a description for Test Module ${i}.`);
-    }
-
     /**
      * Creates a new setting group element populated with a list of settings.
      * @param {string} groupTitle - The title for the setting group.
@@ -377,12 +373,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+    function createModule(title, description, link = "/") {
+        // Locate the container where modules for submenu-3 are placed.
+        const container = document.querySelector("#submenu-3 .sidemodules .modules-wrapper");
+        if (!container) {
+            console.error("Module container in submenu-3 not found.");
+            return;
+        }
+
+        // Create a new module element.
+        const moduleDiv = document.createElement("div");
+        moduleDiv.classList.add("module");
+
+        // Create an anchor element that wraps the module content.
+        const anchor = document.createElement("a");
+        anchor.href = link;
+        // Set the text content of the anchor to the module title.
+        anchor.appendChild(document.createTextNode(title));
+
+        // Create a paragraph element for the description and assign the "description" class.
+        const descriptionP = document.createElement("p");
+        descriptionP.classList.add("description");
+        descriptionP.textContent = description;
+
+        // Append the description to the anchor.
+        anchor.appendChild(descriptionP);
+
+        // Append the anchor to the module container.
+        moduleDiv.appendChild(anchor);
+
+        // Finally, append the new module to the target container.
+        container.appendChild(moduleDiv);
+    }
+
+
+
+    for(let i = 1; i <= 50; i++) {
+        addToggleModule(`Test Module ${i}`, `This is a description for Test Module ${i}.`);
+        createModule(`Test Module ${i}`, `This is a description for Test Module ${i}.`);
+    }
+
+
     window.api = {
         addCategory: addCategory,
         addPinnedModule: addPinnedModule,
         addToggleModule: addToggleModule,
         createSettingGroup: createSettingGroup,
         createSettingElement: createSettingElement,
-        addSettingToGroup: addSettingToGroup
+        addSettingToGroup: addSettingToGroup,
+        createModule: createModule
     };
 });
