@@ -143,4 +143,101 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+//     apis to this ui
+    function addCategory(name, description) {
+        // Create a new div element for the category
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'module';
+
+        // Create an anchor element
+        const anchor = document.createElement('a');
+        anchor.href = '/';
+        anchor.textContent = name;
+
+        // Create a paragraph element for the description
+        const descriptionP = document.createElement('p');
+        descriptionP.className = 'description';
+        descriptionP.textContent = description;
+
+        // Append the description to the anchor
+        anchor.appendChild(descriptionP);
+
+        // Append the anchor to the category div
+        categoryDiv.appendChild(anchor);
+
+        // Append the new category div before the highlighted categories
+        const parentContainer = document.querySelector('.column.categories');
+        const highlightedCategories = parentContainer.querySelector('.categories.highlighted');
+        parentContainer.insertBefore(categoryDiv, highlightedCategories);
+    }
+
+    addCategory('Test Category 1', 'This is a description for Test Category 1.');
+    addCategory('Test Category 2', 'This is a description for Test Category 2.');
+    addCategory('Test Category 3', 'This is a description for Test Category 3.');
+
+    function addPinnedModule(name, description) {
+        // Create a new div element for the module
+        const moduleDiv = document.createElement('div');
+        moduleDiv.className = 'module';
+
+        // Create an anchor element
+        const anchor = document.createElement('a');
+        anchor.href = '/';
+        anchor.textContent = name;
+
+        // Create a paragraph element for the description
+        const descriptionP = document.createElement('p');
+        descriptionP.className = 'description';
+        descriptionP.textContent = description;
+
+        // Append the description and icon to the anchor
+        anchor.appendChild(descriptionP);
+
+        // Append the anchor to the module div
+        moduleDiv.appendChild(anchor);
+
+        // Append the new module div to the pinned-modules container
+        const parentContainer = document.querySelector('.pinned-modules');
+        parentContainer.appendChild(moduleDiv);
+    }
+
+    addPinnedModule('Test Module 1', 'This is a description for Test Module 1.');
+    addPinnedModule('Test Module 2', 'This is a description for Test Module 2.');
+
+
+    function addToggleModule(title, description, link = "/") {
+        // Find the container where modules are added.
+        const container = document.querySelector('.modules.module-container');
+        if (!container) {
+            console.error('Module container not found.');
+            return;
+        }
+
+        // Create a new div element for the module and assign the "module" class.
+        const moduleDiv = document.createElement('div');
+        moduleDiv.classList.add('module');
+
+        // Create an anchor element that wraps the module content.
+        const anchor = document.createElement('a');
+        anchor.href = link;
+
+        // Add the title as a text node to the anchor.
+        anchor.appendChild(document.createTextNode(title));
+
+        // Create a paragraph element for the description and assign the "description" class.
+        const descP = document.createElement('p');
+        descP.classList.add('description');
+        descP.textContent = description;
+        anchor.appendChild(descP);
+
+        // Append the anchor to the module container.
+        moduleDiv.appendChild(anchor);
+
+        // Finally, append the module to the modules container.
+        container.appendChild(moduleDiv);
+    }
+
+    for(let i = 1; i <= 50; i++) {
+        addToggleModule(`Test Module ${i}`, `This is a description for Test Module ${i}.`);
+    }
 });
