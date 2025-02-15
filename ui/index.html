@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="icons_and_fonts.css">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="style.css">
-    <script src="navigation.js"></script>
-
 </head>
 <body>
 <nav class="navigation-wrapper">
@@ -859,22 +857,104 @@
                                         <i class="icon-arrow-narrow-right"></i>
                                     </a>
                                 </div>
-
                             </div>
-
                         </div>
                         <div class="settings-wrapper">
-<!--                            TODO: Implement html and css for all settings-->
-                            <div class="modulesettings">
-                                <div class="setting-name">
-                                    Boolean Settings
+                            <!-- Checkbox -->
+                            <div class="setting">
+                                <div class="setting-info">
+                                    <p class="setting-title">Checkbox</p>
+                                    <p class="setting-description">Toggle this option on or off.</p>
                                 </div>
-                                <div class="setting-value">
-<!--                                    a checkbox-->
-                                    <input type="checkbox" name="boolean-settings" id="boolean-settings" checked>
+                                <label class="input-setting-wrapper">
+                                    <input type="checkbox">
+                                    <span class="input-setting-slider"></span>
+                                </label>
+                            </div>
+
+                            <!-- Radio Buttons -->
+                            <div class="setting">
+                                <div class="setting-info">
+                                    <p class="setting-title">Radio Buttons</p>
+                                    <p class="setting-description">Select one of the following options.</p>
+                                </div>
+                                <div class="radio-inputs">
+                                    <label class="radio">
+                                        <input type="radio" name="radio" checked="">
+                                        <span class="name">HTML</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="radio">
+                                        <span class="name">React</span>
+                                    </label>
+
+                                    <label class="radio">
+                                        <input type="radio" name="radio">
+                                        <span class="name">Vue</span>
+                                    </label>
                                 </div>
                             </div>
 
+                            <!-- Range Slider -->
+                            <div class="setting">
+                                <div class="setting-info">
+                                    <p class="setting-title">Range Slider</p>
+                                    <p class="setting-description">Adjust the value within a set range.</p>
+                                </div>
+                                <input type="range" name="range-setting" id="range-setting" min="0" max="100" value="50">
+                            </div>
+
+                            <!-- Text Input -->
+                            <div class="setting">
+                                <div class="setting-info">
+                                    <p class="setting-title">Text Input</p>
+                                    <p class="setting-description">Enter some text here.</p>
+                                </div>
+                                <div class="setting-value">
+                                    <input type="text" name="text" class="input">
+                                </div>
+                            </div>
+
+                            <!-- Number Input -->
+                            <div class="setting">
+                                <div class="setting-info">
+                                    <p class="setting-title">Number Input</p>
+                                    <p class="setting-description">Enter a numeric value.</p>
+                                </div>
+                                <div class="setting-value">
+                                    <input type="number" name="number-setting" id="number-setting" value="10">
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="setting">
+                                <div class="setting-info">
+                                    <p class="setting-title">Button</p>
+                                    <p class="setting-description">Click this button to perform an action.</p>
+                                </div>
+                                <!-- From Uiverse.io by adamgiebl, integrated into our UI -->
+                                <button class="button">
+                                    <div class="button-overlay"></div>
+                                    <span>Button <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 53 58" height="58" width="53">
+                                        <path stroke-width="9" stroke="currentColor" d="M44.25 36.3612L17.25 51.9497C11.5833 55.2213 4.5 51.1318 4.50001 44.5885L4.50001 13.4115C4.50001 6.86824 11.5833 2.77868 17.25 6.05033L44.25 21.6388C49.9167 24.9104 49.9167 33.0896 44.25 36.3612Z"></path>
+                                        </svg></span>
+                                </button>
+                            </div>
+
+                            <!-- Dropdown Select -->
+                            <div class="setting">
+                                <div class="setting-info">
+                                    <p class="setting-title">Dropdown Select</p>
+                                    <p class="setting-description">Choose an option from the list.</p>
+                                </div>
+                                <div class="setting-value">
+                                    <select name="select-setting" id="select-setting">
+                                        <option value="optionA">Option A</option>
+                                        <option value="optionB">Option B</option>
+                                        <option value="optionC">Option C</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -971,4 +1051,5 @@
 </div>
 
 </body>
+<script src="navigation.js"></script>
 </html>

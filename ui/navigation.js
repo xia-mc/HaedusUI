@@ -121,16 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Menu button toggle
-    document.querySelector(".menu-btn-wrapper").addEventListener("click", function() {
-        document.body.classList.toggle("overflow-hidden");
-        const level1 = document.querySelector(".nav-mobile .level-1");
-        level1.style.display = level1.style.display === "block" ? "none" : "block";
-        this.querySelector(".menu-btn").classList.toggle("active");
-    });
-
     document.querySelectorAll('.setting-group-title').forEach(function(group) {
         group.addEventListener('click', function() {
+            console.log('Setting group clicked:', this);
             const settingGroup = this.parentElement;
             const settingWrapper = settingGroup.querySelector('.setting-wrapper');
 
@@ -148,4 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+
 });
