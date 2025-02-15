@@ -121,26 +121,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.querySelectorAll('.setting-group-title').forEach(function(group) {
-        group.addEventListener('click', function() {
-            console.log('Setting group clicked:', this);
-            const settingGroup = this.parentElement;
+    // Use event delegation on the container that holds all setting groups.
+    const settingsContainer = document.querySelector('.settings-column');
+    if (settingsContainer) {
+        settingsContainer.addEventListener('click', function(e) {
+            // Check if the click came from or inside a .setting-group-title element.
+            const groupTitle = e.target.closest('.setting-group-title');
+            if (!groupTitle || !settingsContainer.contains(groupTitle)) return;
+
+            console.log('Setting group clicked:', groupTitle);
+            const settingGroup = groupTitle.parentElement;
             const settingWrapper = settingGroup.querySelector('.setting-wrapper');
 
-            // Log the selected elements
             console.log('Selected settingGroup:', settingGroup);
             console.log('Selected settingWrapper:', settingWrapper);
 
             if (settingWrapper) {
                 settingGroup.classList.toggle('expanded');
                 settingWrapper.classList.toggle('expanded');
-                this.querySelector('i').classList.toggle('icon-chevron-up');
-                adjustNavigationHeight(2); // Call function whenever expanded
+                const icon = groupTitle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('icon-chevron-up');
+                }
+                adjustNavigationHeight(2); // Update navigation height if needed.
             } else {
                 console.error('settingWrapper not found for', settingGroup);
             }
         });
-    });
+    } else {
+        console.error('Settings container not found.');
+    }
 
 
 //     apis to this ui
@@ -240,4 +250,139 @@ document.addEventListener('DOMContentLoaded', function() {
     for(let i = 1; i <= 50; i++) {
         addToggleModule(`Test Module ${i}`, `This is a description for Test Module ${i}.`);
     }
+
+    /**
+     * Creates a new setting group element populated with a list of settings.
+     * @param {string} groupTitle - The title for the setting group.
+     * @param {Array} settingsArray - An array of settings, each an object with keys:
+     *    title (string), description (string), and value (string).
+     * @returns {HTMLElement} The new setting group element.
+     */
+    function createSettingGroup(groupTitle, settingsArray = []) {
+        // Create the container for the group.
+        const groupDiv = document.createElement('div');
+        groupDiv.classList.add('setting-group');
+
+        // Create the title part.
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('setting-group-title');
+
+        // Create a <p> element for the title text.
+        const titleP = document.createElement('p');
+        titleP.classList.add('col-title', 'Title-text');
+        titleP.textContent = groupTitle;
+        titleDiv.appendChild(titleP);
+
+        // Create the chevron icon.
+        const icon = document.createElement('i');
+        icon.classList.add('icon-chevron-down');
+        titleDiv.appendChild(icon);
+
+        groupDiv.appendChild(titleDiv);
+
+        // Create the wrapper for settings.
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.classList.add('setting-wrapper');
+
+        // Add each setting.
+        settingsArray.forEach(settingObj => {
+            const settingEl = createSettingElement(settingObj);
+            wrapperDiv.appendChild(settingEl);
+        });
+
+        groupDiv.appendChild(wrapperDiv);
+
+        return groupDiv;
+    }
+
+    /**
+     * Creates a single setting element.
+     * @param {Object} settingObj - An object with properties: title, description, value.
+     * @returns {HTMLElement} The setting element.
+     */
+    function createSettingElement({ title, description, value }) {
+        const settingDiv = document.createElement('div');
+        settingDiv.classList.add('setting');
+
+        // Create the info part.
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('setting-info');
+
+        const settingTitleP = document.createElement('p');
+        settingTitleP.classList.add('setting-title');
+        settingTitleP.textContent = title;
+        infoDiv.appendChild(settingTitleP);
+
+        const settingDescP = document.createElement('p');
+        settingDescP.classList.add('setting-description');
+        settingDescP.textContent = description;
+        infoDiv.appendChild(settingDescP);
+
+        settingDiv.appendChild(infoDiv);
+
+        // Create the value part.
+        const valueDiv = document.createElement('div');
+        valueDiv.classList.add('setting-value');
+        valueDiv.textContent = value;
+
+        settingDiv.appendChild(valueDiv);
+
+        return settingDiv;
+    }
+
+    /**
+     * Adds a single setting to an existing setting group.
+     * @param {HTMLElement} groupElement - The setting group element created by createSettingGroup.
+     * @param {Object} settingObj - An object with properties: title, description, value.
+     */
+    function addSettingToGroup(groupElement, settingObj) {
+        // Find the setting-wrapper inside the group.
+        const wrapper = groupElement.querySelector('.setting-wrapper');
+        if (!wrapper) {
+            console.error('No setting-wrapper found in the provided group element.');
+            return;
+        }
+
+        const newSetting = createSettingElement(settingObj);
+        wrapper.appendChild(newSetting);
+    }
+
+    // code that tests settings group and stuff
+
+    const combatGroup = createSettingGroup("Combat Settings", [
+        {
+            title: "Aimbot",
+            description: "Aimbot is a feature that helps you aim at the enemy",
+            value: "X"
+        },
+        {
+            title: "Trigger Bot",
+            description: "Automatically fires when an enemy is in sight",
+            value: "B"
+        }
+    ]);
+
+    const settingsColumn = document.querySelector('.settings-column');
+    if (settingsColumn) {
+        settingsColumn.appendChild(combatGroup);
+    } else {
+        console.error("Settings column not found.");
+    }
+
+    // Example: Add an additional setting to the newly created group.
+    addSettingToGroup(combatGroup, {
+        title: "Wallhack",
+        description: "Allows you to see through walls",
+        value: "X"
+    });
+
+
+    window.api = {
+        addCategory: addCategory,
+        addPinnedModule: addPinnedModule,
+        addToggleModule: addToggleModule,
+        createSettingGroup: createSettingGroup,
+        createSettingElement: createSettingElement,
+        addSettingToGroup: addSettingToGroup
+    };
 });
